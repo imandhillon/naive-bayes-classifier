@@ -1,0 +1,56 @@
+Imanpreet Dhillon
+isd13
+
+1)  Naive Bayes classification is essentially
+    posterior = (prior * likelihood) / evidence
+    Where the posterior is the probability of data being a class given attribute values,
+    prior is the probability of a class given a dataset,
+    likelihood is the probability of attributes of a class given a class,
+    and evidence is the probability of attributes given a dataset.
+
+    The simplest way to derive this formula is to recognize the fact that
+    the probability of attributes times the probability of a class given attributes
+    is the same as the probability of a class times the probabilty of attributes given the class.
+    So P(attributes)*P(class given attributes) = P(class)*P(attributes given class).
+
+    A classifier's job is to find P(class given attributes). 
+    So we just divide P(attributes) to both sides of the equation to isolate the posterior.
+
+2)  My implementation makes heavy use of python lists and numpy ndarrays. 
+    These are just commonly used standard data structures used in python.
+    The program starts by reading the file contents into strings and then passing those into
+    a function to parse and organize the data. I assumed that there would only ever be two classes 
+    and that they would always be denoted as +1 or -1.
+    Having organized my data, I run calculations to find the variables mentioned in part 1 to plug them into the
+    equation and try to predict a class from just looking at the attribute values and then checking the actual label
+    to see if the predition was correct.
+
+3)  My results for the breast cancer data were 
+    (training)
+        true positive: 30 
+        true negative: 106 
+        false positive: 18 
+        false negative: 26
+    (testing - same order)
+        13
+        106
+        18
+        26
+
+    Led data:
+    (training)
+        798 
+        2714 
+        184 
+        478
+    (testing)
+        207 
+        742 
+        41 
+        144
+
+4)  My thoughts were that these results were better than I would have expected, especially since I did not implement smoothing
+    in my program. I see that it is easy enough to implement, and I may do so at a later time. Without implement smoothing,
+    the algorithm will return a probability of 0 for the posterior if any of the presented attribute values have not been seen before in training,
+    since all the attribute probabilities are multiplied together for calculation. This means that all other attribute values are not looked at
+    in this case, and the classifier essentially guesses a class at random (though in this program, it will just be set to +1).
